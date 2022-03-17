@@ -1,8 +1,16 @@
 DequeNode
 - Comprobar que el constructor creado tiene los valores que se le han puesto.
+	* testDequeNodeConstructorShouldReturnSameValueItem()
+	* testDequeNodeConstructorShouldReturnSameValueNext()
+	* testDequeNodeConstructorShouldReturnSameValuePrevious()
 - Testear que si hago un setItem en un nodo, al hacer getItem da el mismo valor.
+	* testGetItemShouldReturnItemValue()
 - Testear que si hago un setNext en un nodo, al hacer getNext da el mismo valor.
+	* testGetNextShouldReturnNextNode()
+	* testGetNextReturnsNullIfNextNodeIsNull()
 - Testear que si hago un setPrevious en un nodo, al hacer getPrevious da el mismo valor.
+	* testGetPreviousShouldReturnPreviousNode()
+	* testGetPreviousReturnsNullIfPreviousNodeIsNull()
 - Comprobar que el anterior al primer nodo es nulo.
 - Comprobar que el posterior al último nodo es nulo.
 - Comprobar que que si un nodo es no terminal el anterior nodo no es nulo.
@@ -10,9 +18,15 @@ DequeNode
 
 DoubleLinkedListQueue
 - Comprobar que si añades un nodo al principio (appendLeft), al usar peekFirst da el valor introducido.
+	* testAppendLeftShouldInsertNodeAtStart()
 - Comprobar que si añades un nodo al final (append), al usar peekLast da el valor introducido.
+	* testAppendShouldInsertNodeAtEnd()
 - Comprobar que si añades un nodo nulo al principio, da error.
+	* testAppendLeftNullNodeRaiseAnException()
 - Comprobar que si añades un nodo nulo al final, da error.
+	* testAppendNullNodeRaiseAnException()
+- Comprobar que tras varias inserciones y varios borrados, el tamaño de la lista es correcto
+	* testSizeOfQueueWithFourAppendsAndTwoDeletesShouldReturnTwo()
 - Comprobar que si haces un append a una lista vacía, el valor es igual a peekFirst y peekLast.
 - Comprobar que si haces un appendLeft a una lista vacía, el valor es igual a peekFirst y peekLast.
 - Comprobar que si tratas de borrar el primer elemento de una lista vacía da error.

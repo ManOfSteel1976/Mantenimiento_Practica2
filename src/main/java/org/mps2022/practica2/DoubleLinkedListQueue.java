@@ -13,12 +13,12 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             // If Queue is empty
             if (nodeLast == null) {
                 nodeFirst = node;
-                nodeLast = node;
+                //nodeLast = node;
                 // Inserts node at the rear end
             } else {
-                DequeNode<T> last = new DequeNode<>(node.getItem(), null, nodeLast);
-                nodeLast = last;
+                node.setPrevious(nodeLast);
             }
+            nodeLast = node;
             size++;
         }
     }
@@ -30,13 +30,12 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else{
             // If Queue is empty
             if (nodeFirst == null) {
-                nodeFirst = node;
                 nodeLast = node;
                 // Inserts node at the front end
             } else {
-                DequeNode<T> first = new DequeNode<>(node.getItem(), nodeFirst, null);
-                nodeFirst = first;
+                node.setNext(nodeLast);
             }
+            nodeFirst = node;
             size++;
         }
     }
