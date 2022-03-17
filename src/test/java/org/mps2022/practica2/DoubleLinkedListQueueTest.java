@@ -70,4 +70,41 @@ class DoubleEndedQueueTest {
         assertEquals(obtainedValue, expectedValue);
     }
 
+    @Test
+    public void testDeletingFirstOfAnEmptyListShouldRaiseAnException() {
+        assertThrows(RuntimeException.class, () -> list.deleteFirst());
+    }
+
+    @Test
+    public void testDeletingLastOfAnEmptyListShouldRaiseAnException() {
+        assertThrows(RuntimeException.class, () -> list.deleteLast());
+    }
+
+    @Test
+    public void testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual() {
+        DequeNode<Integer> expectedValue = new DequeNode<>(10, null, null);
+        list.append(new DequeNode<Integer>(5, null, null));
+        list.append(expectedValue);
+        list.append(new DequeNode<Integer>(15, null, null));
+        list.append(new DequeNode<Integer>(20, null, null));
+
+        list.deleteFirst();
+        DequeNode<Integer> obtainedValue = list.peekFirst();
+
+        assertEquals(expectedValue, obtainedValue);
+    }
+
+    @Test
+    public void testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual() {
+        DequeNode<Integer> expectedValue = new DequeNode<>(15, null, null);
+        list.append(new DequeNode<>(5, null, null));
+        list.append(new DequeNode<>(10, null, null));
+        list.append(expectedValue);
+        list.append(new DequeNode<>(20, null, null));
+
+        list.deleteLast();
+        DequeNode<Integer> obtainedValue = list.peekLast();
+
+        assertEquals(expectedValue, obtainedValue);
+    }
 }
