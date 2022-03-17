@@ -44,4 +44,32 @@ public class DequeNodeTest {
 
         assertNull(obtainedValue);
     }
+
+    @Test
+    public void IfisNotATerminalNodeTheNextsNodeIsNotNull(){
+       DequeNode<Integer> previousV = new DequeNode<>(5,null,null);
+       dequeInt = new DequeNode<>(5,null,previousV);
+       boolean obtainedValue =dequeInt.isNotATerminalNode();
+
+        assertFalse(obtainedValue);
+    }
+
+    @Test
+    public void IfisNotATerminalNodeThePreviousNodeIsNotNull(){
+        DequeNode<Integer> nextV = new DequeNode<>(5,null,null);
+        dequeInt = new DequeNode<>(5,nextV,null);
+        boolean obtainedValue =dequeInt.isNotATerminalNode();
+
+        assertFalse(obtainedValue);
+    }
+    @Test
+    public void IfisNotATerminalNodeThePreviousNodeAndTheNextAreNotNull(){
+        DequeNode<Integer> nextV = new DequeNode<>(5,null,null);
+        DequeNode<Integer> previousV = new DequeNode<>(5,null,null);
+        dequeInt = new DequeNode<>(5,nextV,previousV);
+        boolean obtainedValue = dequeInt.isNotATerminalNode();
+
+        assertTrue(obtainedValue);
+    }
+
 }
