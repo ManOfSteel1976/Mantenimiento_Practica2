@@ -48,7 +48,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             if (nodeFirst.getNext() != null) {
                 // If more than one element was present
                 nodeFirst = nodeFirst.getNext();
-                nodeFirst.setPrevious()=null;
+                nodeFirst.setPrevious(null);
                 // If only one element was present
                 if (nodeFirst == null) {
                     nodeLast = null;
@@ -67,7 +67,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             if (nodeLast.getPrevious() != null) {
                 // If more than one element was present
                 nodeLast = nodeLast.getPrevious();
-                nodeLast.setNext()=null;
+                nodeLast.setNext(null);
                 // If only one element was present
                 if (nodeLast == null) {
                     nodeFirst = null;
