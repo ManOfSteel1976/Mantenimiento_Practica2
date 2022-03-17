@@ -107,4 +107,38 @@ class DoubleEndedQueueTest {
 
         assertEquals(expectedValue, obtainedValue);
     }
+
+    @Test
+    public void testIfAppendEmptyListValueIsPeekFrist(){
+        DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
+        list.append(expectedValue);
+        DequeNode<Integer> obtainedValue = queue.peekFirst();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
+    @Test
+    public void testIfAppendEmptyListValueIsPeekLast(){
+        DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
+        list.append(expectedValue);
+        DequeNode<Integer> obtainedValue = queue.peekLast();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
+
+    @Test
+    public void testIfAppendLeftEmptyListValueIsPeekFrist(){
+        DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
+        list.appendLeft(expectedValue);
+        DequeNode<Integer> obtainedValue = queue.peekFirst();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
+    @Test
+    public void testIfAppendLeftEmptyListValueIsPeekLast(){
+        DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
+        list.appendLeft(expectedValue);
+        DequeNode<Integer> obtainedValue = queue.peekLast();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
 }
