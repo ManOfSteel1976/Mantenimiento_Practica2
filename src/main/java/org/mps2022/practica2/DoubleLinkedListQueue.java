@@ -10,14 +10,13 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             throw new RuntimeException("Empty Node");
         }else{
             // If Queue is empty
-            if (nodeFirst == null) {
+            if (nodeLast == null) {
                 nodeFirst = node;
                 nodeLast = node;
                 // Inserts node at the rear end
             } else {
-                DequeNode<T> last = peekLast();
-                nodeLast = new DequeNode<>(node.getItem(), null, last);
-                last = new DequeNode<>(last.getItem(), nodeLast, last.getPrevious());
+                DequeNode<T> last = new DequeNode<>(node.getItem(), null, nodeLast);
+                nodeLast = last;
             }
         }
     }
@@ -33,9 +32,8 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 nodeLast = node;
                 // Inserts node at the front end
             } else {
-                DequeNode<T> first = peekFirst();
-                nodeFirst = new DequeNode<>(node.getItem(), first, null);
-                first = new DequeNode<>(first.getItem(), first.getNext(), nodeFirst);
+                DequeNode<T> first = new DequeNode<>(node.getItem(), nodeFirst, null);
+                nodeFirst = first;
             }
         }
     }
