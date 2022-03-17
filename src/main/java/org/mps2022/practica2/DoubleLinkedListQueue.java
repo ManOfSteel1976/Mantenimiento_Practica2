@@ -15,15 +15,15 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 nodeLast = node;
                 // Inserts node at the rear end
             } else {
-                DequeNode last = peekLast();
-                nodeLast = new DequeNode(node.getItem(), null, last);
-                last = new DequeNode(last.getItem(), nodeLast, last.getPrevious());
+                DequeNode<T> last = peekLast();
+                nodeLast = new DequeNode<>(node.getItem(), null, last);
+                last = new DequeNode<>(last.getItem(), nodeLast, last.getPrevious());
             }
         }
     }
 
     @Override
-    public void appendLeft(DequeNode node) {
+    public void appendLeft(DequeNode<T> node) {
         if(node==null){
             throw new RuntimeException("Empty Node");
         }else{
@@ -33,9 +33,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 nodeLast = node;
                 // Inserts node at the front end
             } else {
-                DequeNode first = peekFirst();
-                nodeFirst = new DequeNode(node.getItem(), first, null);
-                first = new DequeNode(first.getItem(), first.getNext(), nodeFirst);
+                DequeNode<T> first = peekFirst();
+                nodeFirst = new DequeNode<>(node.getItem(), first, null);
+                first = new DequeNode<>(first.getItem(), first.getNext(), nodeFirst);
             }
         }
     }
@@ -47,15 +47,18 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else{
             // Deletes the node from the front end and makes
             // the adjustment in the links
-                DequeNode temp = new DequeNode(nodeFirst.getNext().getItem(), nodeFirst.getNext().getNext(), null);
-                DequeNode aux = nodeFirst;
-                nodeFirst = nodeFirst.getNext();
-            // If only one element was present
-                if(nodeFirst == null){
-                    nodeLast = null;
-                }else {
-                    nodeFirst = temp;
+            if (nodeFirst.getNext() != null) {
+                // If more than one element was present
+                DequeNode<T> temp = new DequeNode<>(nodeFirst.getNext().getItem(), nodeFirst.getNext().getNext(), null);
+                nodeFirst = temp;
+                if (nodeFirst.getNext() == null) {
+                    nodeLast = temp;
                 }
+            }else{
+                // If only one element was present
+                nodeFirst = null;
+                nodeLast = null;
+            }
         }
     }
 
@@ -63,28 +66,31 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     public void deleteLast() {
         if(nodeLast==null){
             throw new RuntimeException("Empty List");
-        }else{
+        }else {
             // Deletes the node from the rear end and makes
             // the adjustment in the links
-                DequeNode temp = new DequeNode(nodeLast.getPrevious().getItem(), null, nodeLast.getPrevious().getPrevious());
-                DequeNode aux = nodeLast;
-                nodeLast = nodeLast.getPrevious();
-            // If only one element was present
-                if(nodeLast == null){
-                    nodeFirst = null;
-                }else {
-                    nodeLast = temp;
+            if (nodeLast.getPrevious() != null) {
+                // If more than one element was present
+                DequeNode<T> temp = new DequeNode<>(nodeLast.getPrevious().getItem(), null, nodeLast.getPrevious().getPrevious());
+                nodeLast = temp;
+                if (nodeLast.getPrevious() == null) {
+                    nodeFirst = temp;
                 }
+            } else {
+                // If only one element was present
+                nodeLast = null;
+                nodeFirst = null;
+            }
         }
     }
 
     @Override
-    public DequeNode peekFirst() {
+    public DequeNode<T> peekFirst() {
         return nodeFirst;
     }
 
     @Override
-    public DequeNode peekLast() {
+    public DequeNode<T> peekLast() {
         return nodeLast;
     }
 
