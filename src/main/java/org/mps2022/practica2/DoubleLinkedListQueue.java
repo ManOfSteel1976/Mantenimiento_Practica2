@@ -47,15 +47,12 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             // the adjustment in the links
             if (nodeFirst.getNext() != null) {
                 // If more than one element was present
-                DequeNode<T> temp = new DequeNode<>(nodeFirst.getNext().getItem(), nodeFirst.getNext().getNext(), null);
-                nodeFirst = temp;
-                if (nodeFirst.getNext() == null) {
-                    nodeLast = temp;
-                }
-            }else{
+                nodeFirst = nodeFirst.getNext();
+                nodeFirst.setPrevious()=null;
                 // If only one element was present
-                nodeFirst = null;
-                nodeLast = null;
+                if (nodeFirst == null) {
+                    nodeLast = null;
+                }
             }
         }
     }
@@ -65,19 +62,16 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         if(nodeLast==null){
             throw new RuntimeException("Empty List");
         }else {
-            // Deletes the node from the rear end and makes
+            // Deletes the node from the front end and makes
             // the adjustment in the links
             if (nodeLast.getPrevious() != null) {
                 // If more than one element was present
-                DequeNode<T> temp = new DequeNode<>(nodeLast.getPrevious().getItem(), null, nodeLast.getPrevious().getPrevious());
-                nodeLast = temp;
-                if (nodeLast.getPrevious() == null) {
-                    nodeFirst = temp;
-                }
-            } else {
+                nodeLast = nodeLast.getPrevious();
+                nodeLast.setNext()=null;
                 // If only one element was present
-                nodeLast = null;
-                nodeFirst = null;
+                if (nodeLast == null) {
+                    nodeFirst = null;
+                }
             }
         }
     }
@@ -95,8 +89,11 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public int size() {
         int size = 0;
-        while (nodeFirst.getNext()!=null){
+        DequeNode<T> aux;
+        aux = nodeFirst;
+        while (aux.getNext()!=null){
             size++;
+            aux = aux.getNext();
         }
         return size;
     }
