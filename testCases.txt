@@ -3,6 +3,12 @@ DequeNode
 	* testDequeNodeConstructorShouldReturnSameValueItem()
 	* testDequeNodeConstructorShouldReturnSameValueNext()
 	* testDequeNodeConstructorShouldReturnSameValuePrevious()
+- Testear que si hago un setItem en un nodo, su valor cambia.
+    * testSetItemShouldChangeItemValue()
+- Testear que si hago un setNext en un nodo, su nodo posterior cambia.
+    * testSetNextShouldChangeNextNode()
+- Testear que si hago un setPrevious en un nodo, su nodo anterior cambia.
+    * testSetPreviousShouldChangePreviousNode()
 - Testear que si hago un setItem en un nodo, al hacer getItem da el mismo valor.
 	* testGetItemShouldReturnItemValue()
 - Testear que si hago un setNext en un nodo, al hacer getNext da el mismo valor.
@@ -12,9 +18,15 @@ DequeNode
 	* testGetPreviousShouldReturnPreviousNode()
 	* testGetPreviousReturnsNullIfPreviousNodeIsNull()
 - Comprobar que el anterior al primer nodo es nulo.
+    * testPreviousNodeToFirstShouldReturnNull()
 - Comprobar que el posterior al último nodo es nulo.
+    * testNextNodeToLastShouldReturnNull()
 - Comprobar que que si un nodo es no terminal el anterior nodo no es nulo.
+    * IfisNotATerminalNodeTheNextsNodeIsNotNull()
 - Comprobar que que si un nodo es no terminal el posterior nodo no es nulo.
+    * IfisNotATerminalNodeThePreviousNodeIsNotNull()
+- Comprobar que si un nodo es no terminal tanto los nodos anterior como posterior no son nulos.
+    * IfisNotATerminalNodeThePreviousNodeAndTheNextAreNotNull()
 
 DoubleLinkedListQueue
 - Comprobar que si añades un nodo al principio (appendLeft), al usar peekFirst da el valor introducido.

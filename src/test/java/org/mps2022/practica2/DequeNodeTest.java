@@ -13,11 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DequeNodeTest {
 
-    private DequeNode<Integer> dequeInt;
+    private DequeNode<Integer> dequeInt, dequeFirst, dequeLast;
 
     @BeforeEach
     public void setup(){
         dequeInt = new DequeNode<>(5,null,null);
+        dequeFirst = new DequeNode<>(1, dequeLast, null);
+        dequeLast = new DequeNode<>(2, null, dequeFirst);
     }
 
     @AfterEach
@@ -147,5 +149,19 @@ public class DequeNodeTest {
         DequeNode<Integer> obtainedValue = dequeInt.getPrevious();
 
         assertEquals(expectedValue,obtainedValue);
+    }
+
+    @Test
+    public void testPreviousNodeToFirstShouldReturnNull() {
+        DequeNode<Integer> obtainedValue = dequeFirst.getPrevious();
+
+        assertNull(obtainedValue);
+    }
+
+    @Test
+    public void testNextNodeToLastShouldReturnNull() {
+        DequeNode<Integer> obtainedValue = dequeLast.getNext();
+
+        assertNull(obtainedValue);
     }
 }
