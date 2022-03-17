@@ -2,7 +2,8 @@ package org.mps2022.practica2;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
-    DequeNode<T> nodeFirst, nodeLast;
+    DequeNode<T> nodeFirst, nodeLast = null;
+    int size = 0;
 
     @Override
     public void append(DequeNode<T> node) {
@@ -18,6 +19,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 DequeNode<T> last = new DequeNode<>(node.getItem(), null, nodeLast);
                 nodeLast = last;
             }
+            size++;
         }
     }
 
@@ -35,6 +37,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 DequeNode<T> first = new DequeNode<>(node.getItem(), nodeFirst, null);
                 nodeFirst = first;
             }
+            size++;
         }
     }
 
@@ -54,6 +57,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                     nodeLast = null;
                 }
             }
+            size--;
         }
     }
 
@@ -73,6 +77,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                     nodeFirst = null;
                 }
             }
+            size--;
         }
     }
 
@@ -88,13 +93,6 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public int size() {
-        int size = 0;
-        DequeNode<T> aux;
-        aux = nodeFirst;
-        while (aux.getNext()!=null){
-            size++;
-            aux = aux.getNext();
-        }
-        return size;
+        return this.size;
     }
 }
