@@ -40,8 +40,16 @@ DoubleLinkedListQueue
 - Comprobar que tras varias inserciones y varios borrados, el tamaño de la lista es correcto
 	* testSizeOfQueueWithFourAppendsAndTwoDeletesShouldReturnTwo()
 - Comprobar que si haces un append a una lista vacía, el valor es igual a peekFirst y peekLast.
+    * testIfAppendEmptyListValueIsPeekFirst()
+    * testIfAppendEmptyListValueIsPeekLast()
 - Comprobar que si haces un appendLeft a una lista vacía, el valor es igual a peekFirst y peekLast.
+    * testIfAppendLeftEmptyListValueIsPeekFirst()
+    * testIfAppendLeftEmptyListValueIsPeekLast()
 - Comprobar que si tratas de borrar el primer elemento de una lista vacía da error.
+    * testDeletingFirstOfAnEmptyListShouldRaiseAnException()
 - Comprobar que si tratas de borrar el último elemento de una lista vacía da error.
+    * testDeletingLastOfAnEmptyListShouldRaiseAnException()
 - Comprobar que si al borrar el primer elemento, el valor del segundo es igual al nuevo primero tras la eliminación.
+    * testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual()
 - Comprobar que si al borrar el último elemento, el valor del segundo es igual al nuevo último tras la eliminación.
+    * testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual()
