@@ -102,7 +102,23 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     //Día 2: Operaciones complejas
 
     @Override
-    public DequeNode<T> getAt(int position) {return null;}
+    public DequeNode<T> getAt(int position) {
+        if (position<0){
+            throw new IllegalArgumentException("Error: Negative position");
+        }
+        if (position>=this.size()){
+            throw new IllegalArgumentException("Error: Position greater than list size");
+        }
+        DequeNode<T> res;
+        DequeNode<T> aux = this.peekFirst();
+        int index = 0;
+        while (index<position){
+            aux = aux.getNext();
+            index++;
+        }
+        res = aux;
+        return res;
+    }
 
     @Override
     public DequeNode<T> find (T item) {return null;} ;
