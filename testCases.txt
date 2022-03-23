@@ -51,5 +51,8 @@ DoubleLinkedListQueue
     * testDeletingLastOfAnEmptyListShouldRaiseAnException()
 - Comprobar que si al borrar el primer elemento, el valor del segundo es igual al nuevo primero tras la eliminación.
     * testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual()
-- Comprobar que si al borrar el último elemento, el valor del segundo es igual al nuevo último tras la eliminación.
+- Comprobar que si al borrar el último elemento, el valor del penúltimo es igual al nuevo último tras la eliminación.
     * testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual()
+- Commprobar que si se borra un elemento de una lista de un solo elemento, el resultado es una lista vacía
+    * testDeletingFirstOfOneItemListShouldReturnEmptyList()
+    * testDeletingLastOfOneItemListShouldReturnEmptyList()

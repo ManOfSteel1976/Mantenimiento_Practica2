@@ -1,41 +1,47 @@
 package org.mps2022.practica2;
 
+import java.util.Comparator;
+
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     DequeNode<T> nodeFirst, nodeLast = null;
     int size = 0;
 
     @Override
-    public void append(DequeNode<T> node) {
+    public void appendLeft(DequeNode<T> node) {
         if(node==null){
             throw new RuntimeException("Empty Node");
-        }else{
-            // If Queue is empty
-            if (nodeLast == null) {
+        }else {
+            // If deque is empty
+            if (nodeFirst == null){
                 nodeFirst = node;
-                //nodeLast = node;
-                // Inserts node at the rear end
-            } else {
-                node.setPrevious(nodeLast);
+                nodeLast = node;
+            // Inserts node at the front end
+            }else{
+                node.setNext(nodeFirst);
+                nodeFirst.setPrevious(node);
+                nodeFirst = node;
             }
-            nodeLast = node;
+            // Increments count of elements by 1
             size++;
         }
     }
 
     @Override
-    public void appendLeft(DequeNode<T> node) {
+    public void append(DequeNode<T> node) {
         if(node==null){
             throw new RuntimeException("Empty Node");
         }else{
-            // If Queue is empty
-            if (nodeFirst == null) {
+            // If deque is empty
+            if (nodeLast == null) {
+                nodeFirst = node;
                 nodeLast = node;
-                // Inserts node at the front end
-            } else {
-                node.setNext(nodeLast);
+                // Inserts node at the rear end
+            }else{
+                node.setPrevious(nodeLast);
+                nodeLast.setNext(node);
+                nodeLast = node;
             }
-            nodeFirst = node;
             size++;
         }
     }
@@ -47,15 +53,14 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else{
             // Deletes the node from the front end and makes
             // the adjustment in the links
-            if (nodeFirst.getNext() != null) {
-                // If more than one element was present
-                nodeFirst = nodeFirst.getNext();
+            nodeFirst = nodeFirst.getNext();
+            // If only one element was present
+            if (nodeFirst == null) {
+                nodeLast = null;
+            }else {
                 nodeFirst.setPrevious(null);
-                // If only one element was present
-                if (nodeFirst == null) {
-                    nodeLast = null;
-                }
             }
+            // Decrements count of elements by 1
             size--;
         }
     }
@@ -67,15 +72,14 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else {
             // Deletes the node from the front end and makes
             // the adjustment in the links
-            if (nodeLast.getPrevious() != null) {
-                // If more than one element was present
-                nodeLast = nodeLast.getPrevious();
+            nodeLast = nodeLast.getPrevious();
+            // If only one element was present
+            if (nodeLast == null) {
+                nodeFirst = null;
+            }else {
                 nodeLast.setNext(null);
-                // If only one element was present
-                if (nodeLast == null) {
-                    nodeFirst = null;
-                }
             }
+            // Decrements count of elements by 1
             size--;
         }
     }
@@ -94,4 +98,18 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     public int size() {
         return this.size;
     }
+
+    //Día 2: Operaciones complejas
+
+    @Override
+    public DequeNode<T> getAt(int position) {return null;}
+
+    @Override
+    public DequeNode<T> find (T item) {return null;} ;
+
+    @Override
+    public void delete(DequeNode<T> node) {};
+
+    @Override
+    public void sort(Comparator<DequeNode<T>> comparator){} ;
 }

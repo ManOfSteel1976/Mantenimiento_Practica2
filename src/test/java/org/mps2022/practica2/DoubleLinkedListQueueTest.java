@@ -141,4 +141,25 @@ class DoubleEndedQueueTest {
 
         assertEquals(obtainedValue,expectedValue);
     }
+
+    @Test
+    public void testDeletingFirstOfOneItemListShouldReturnEmptyList(){
+        int expectedValue = 0;
+        list.appendLeft(new DequeNode<>(5,null,null));
+        list.deleteFirst();
+        int obtainedValue = list.size();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
+
+    @Test
+    public void testDeletingLastOfOneItemListShouldReturnEmptyList(){
+        int expectedValue = 0;
+        list.appendLeft(new DequeNode<>(5,null,null));
+        list.deleteLast();
+        int obtainedValue = list.size();
+
+        assertEquals(obtainedValue,expectedValue);
+    }
+
 }
