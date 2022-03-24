@@ -4,11 +4,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoubleEndedQueueTest {
 
     public DoubleEndedQueue<Integer> list;
+    private final Comparator<DequeNode<Integer>> comparator = Comparator.comparingInt(DequeNode::getItem);
+
     @BeforeEach
     public void setup() {
         list = new DoubleLinkedListQueue<>();
@@ -160,6 +164,10 @@ class DoubleEndedQueueTest {
         int obtainedValue = list.size();
 
         assertEquals(obtainedValue,expectedValue);
+    }
+
+    @Test
+    void sortOfADisorderedQueueShouldOrderIt(){
     }
 
 }

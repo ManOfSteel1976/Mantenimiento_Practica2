@@ -1,6 +1,7 @@
 package org.mps2022.practica2;
 
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
@@ -106,7 +107,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         if (position<0){
             throw new IllegalArgumentException("Error: Negative position");
         }
-        if (position>=this.size()){
+        if (position>=size){
             throw new IllegalArgumentException("Error: Position greater than list size");
         }
         DequeNode<T> res;
@@ -121,11 +122,45 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     }
 
     @Override
-    public DequeNode<T> find (T item) {return null;} ;
+    public DequeNode<T> find (T item) {
+        if (item == null) {
+            throw new IllegalArgumentException("Error: Input item is null");
+        }
+        DequeNode<T> res = nodeFirst;
+        while (res != null && item.equals(res.getItem())) {
+            res = res.getNext();
+        }
+        return res;
+    }
 
     @Override
-    public void delete(DequeNode<T> node) {};
+    public void delete(DequeNode<T> node) {
+        if (node == null) {
+            throw new IllegalArgumentException("Error: Input node is null");
+        }
+        DequeNode<T> current = this.peekFirst();
+        DequeNode<T> previous = null;
+        while (current!=null && node!=current){
+            previous = current;
+            current = current.getNext();
+        }
+        if(current==null){
+            throw new NoSuchElementException("Error: Node not found");
+        }else{
+            if(previous!=null){
+                previous.setNext(current.getNext());
+                current.setNext(null);
+                current.setPrevious(null);
+            }else{
+                nodeFirst = null;
+                nodeLast = null;
+            }
+            size--;
+        }
+    };
 
     @Override
-    public void sort(Comparator<DequeNode<T>> comparator){} ;
+    public void sort(Comparator<DequeNode<T>> comparator) {
+
+    }
 }
