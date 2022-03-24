@@ -169,6 +169,8 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
            while (size>0){
                DequeNode<T> current = nodeFirst;
                this.deleteFirst();
+               current.setNext(null);
+               current.setPrevious(null);
                if (res.size()>0){
                    if (comparator.compare(current, res.peekFirst()) <= 0){
                        res.appendLeft(current);
@@ -177,7 +179,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                    }else{
                        DequeNode<T> aux = res.peekFirst();
                        DequeNode<T> previous = null;
-                       while (aux!=null && (comparator.compare(aux, current) <= 0)){
+                       while (aux!=null && (comparator.compare(aux, current) < 0)){
                            previous = aux;
                            aux = aux.getNext();
                        }
@@ -192,6 +194,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
            }
            nodeFirst = res.peekFirst();
            nodeLast = res.peekLast();
+           size = res.size();
+        }else{
+            throw new RuntimeException("Yo can't sort an empty list");
         }
     }
 }

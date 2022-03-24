@@ -53,7 +53,7 @@ DoubleLinkedListQueue
     * testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual()
 - Comprobar que si al borrar el último elemento, el valor del penúltimo es igual al nuevo último tras la eliminación.
     * testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual()
-- Commprobar que si se borra un elemento de una lista de un solo elemento, el resultado es una lista vacía
+- Comprobar que si se borra un elemento de una lista de un solo elemento, el resultado es una lista vacía
     * testDeletingFirstOfOneItemListShouldReturnEmptyList()
     * testDeletingLastOfOneItemListShouldReturnEmptyList()
 *** getAt
@@ -62,7 +62,7 @@ DoubleLinkedListQueue
 - Comprobar que si intentas acceder a un elemento posterior al último elemento de una lista no vacía da error.
     * testGettingAtItemAfterLastShouldRaiseAnException()
 - Comprobar que si intentas acceder a un elemento de una lista vacía da error.
-    * testGettingAtItemOfAnEmptyListShouldRaiseAnExceotion()
+    * testGettingAtItemOfAnEmptyListShouldRaiseAnException()
 - Comprobar que si intentas acceder al elemento de una lista no vacía con posición 0 nos dará el primer elemento.
     * testGettingAtItemWithIndexZeroShouldReturnFirstElementOfTheList()
 - Comprobar que si intentas acceder al elemento de una lista no vacía con posición n-1 (n es el tamaño de la lista) nos dará el último elemento.

@@ -167,6 +167,25 @@ class DoubleEndedQueueTest {
     }
 
     @Test
+    public void testSortingAListWithNullComparatorShouldRaiseAnException() {
+        assertThrows(IllegalArgumentException.class, () -> list.sort(null));
+    }
+
+    @Test
+    void testSortingAListOfOneElementShouldNotChangeThatList(){
+        DequeNode<Integer> node1 = new DequeNode<>(5, null, null);
+        list.append(node1);
+        list.sort(comparator);
+        assertEquals(node1,list.peekFirst());
+        assertEquals(node1,list.peekLast());
+    }
+
+    @Test
+    public void testSortingAnEmptyListShouldRaiseAnException() {
+        assertThrows(RuntimeException.class, () -> list.sort(comparator));
+    }
+
+    @Test
     void sortOfADisorderedQueueShouldOrderIt(){
         DequeNode<Integer> node1 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(3, null, null);
@@ -183,7 +202,17 @@ class DoubleEndedQueueTest {
 
         list.sort(comparator);
         assertEquals(node6,list.peekFirst());
+        assertEquals(node1,list.peekFirst().getNext());
+        assertEquals(node2,list.peekFirst().getNext().getNext());
+        assertEquals(node4,list.peekFirst().getNext().getNext().getNext());
+        assertEquals(node5,list.peekFirst().getNext().getNext().getNext().getNext());
+        assertEquals(node3,list.peekFirst().getNext().getNext().getNext().getNext().getNext());
         assertEquals(node3,list.peekLast());
+        assertEquals(node5,list.peekLast().getPrevious());
+        assertEquals(node4,list.peekLast().getPrevious().getPrevious());
+        assertEquals(node2,list.peekLast().getPrevious().getPrevious().getPrevious());
+        assertEquals(node1,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious());
+        assertEquals(node6,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
 
     @Test
@@ -203,7 +232,17 @@ class DoubleEndedQueueTest {
 
         list.sort(comparator);
         assertEquals(node1,list.peekFirst());
+        assertEquals(node2,list.peekFirst().getNext());
+        assertEquals(node3,list.peekFirst().getNext().getNext());
+        assertEquals(node4,list.peekFirst().getNext().getNext().getNext());
+        assertEquals(node5,list.peekFirst().getNext().getNext().getNext().getNext());
+        assertEquals(node6,list.peekFirst().getNext().getNext().getNext().getNext().getNext());
         assertEquals(node6,list.peekLast());
+        assertEquals(node5,list.peekLast().getPrevious());
+        assertEquals(node4,list.peekLast().getPrevious().getPrevious());
+        assertEquals(node3,list.peekLast().getPrevious().getPrevious().getPrevious());
+        assertEquals(node2,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious());
+        assertEquals(node1,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
 
     @Test
@@ -223,7 +262,17 @@ class DoubleEndedQueueTest {
 
         list.sort(comparator);
         assertEquals(node6,list.peekFirst());
+        assertEquals(node5,list.peekFirst().getNext());
+        assertEquals(node4,list.peekFirst().getNext().getNext());
+        assertEquals(node3,list.peekFirst().getNext().getNext().getNext());
+        assertEquals(node2,list.peekFirst().getNext().getNext().getNext().getNext());
+        assertEquals(node1,list.peekFirst().getNext().getNext().getNext().getNext().getNext());
         assertEquals(node1,list.peekLast());
+        assertEquals(node2,list.peekLast().getPrevious());
+        assertEquals(node3,list.peekLast().getPrevious().getPrevious());
+        assertEquals(node4,list.peekLast().getPrevious().getPrevious().getPrevious());
+        assertEquals(node5,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious());
+        assertEquals(node6,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
 
 }
