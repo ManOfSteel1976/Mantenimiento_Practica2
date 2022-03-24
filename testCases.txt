@@ -98,5 +98,7 @@ DoubleLinkedListQueue
     * testSortingAListOfOneElementShouldNotChangeThatList()
 - Comprobar que si el comparador que se le da al método es nulo da error.
     * testSortingAListWithNullComparatorShouldRaiseAnException()
-- Comprobar que si intentas ordenar una lista de más de un elemento se ordenarán los elementos siguiendo las condiciones establecidas por el comparador.
-    * testSortingAListWithMoreThanOneElementShouldSortThatList()
+- Comprobar que si intentas ordenar una lista desordenada de más de un elemento se ordenarán los elementos siguiendo las condiciones establecidas por el comparador.
+    * testSortingADisorderedListWithMoreThanOneElementShouldSortThatList()
+- Comprobar que si intentas ordenar una lista ordenada de más de un elemento no se modificará la lista.
+    * testSortingAnOrderedListWithMoreThanOneElementShouldNotChangeThatList()
