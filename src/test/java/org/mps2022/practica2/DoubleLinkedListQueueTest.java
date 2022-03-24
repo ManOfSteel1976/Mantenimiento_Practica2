@@ -186,4 +186,44 @@ class DoubleEndedQueueTest {
         assertEquals(node3,list.peekLast());
     }
 
+    @Test
+    void testSortOfAnOrderedQueueShouldKeepOrdered(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
+        DequeNode<Integer> node5 = new DequeNode<>(5, null, null);
+        DequeNode<Integer> node6 = new DequeNode<>(6, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+        list.append(node5);
+        list.append(node6);
+
+        list.sort(comparator);
+        assertEquals(node1,list.peekFirst());
+        assertEquals(node6,list.peekLast());
+    }
+
+    @Test
+    void testSortOfAReverseOrderedQueueShouldKeepOrdered(){
+        DequeNode<Integer> node1 = new DequeNode<>(6, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(5, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(4, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node5 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node6 = new DequeNode<>(1, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+        list.append(node5);
+        list.append(node6);
+
+        list.sort(comparator);
+        assertEquals(node6,list.peekFirst());
+        assertEquals(node1,list.peekLast());
+    }
+
 }
