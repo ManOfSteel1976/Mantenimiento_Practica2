@@ -56,3 +56,47 @@ DoubleLinkedListQueue
 - Commprobar que si se borra un elemento de una lista de un solo elemento, el resultado es una lista vacía
     * testDeletingFirstOfOneItemListShouldReturnEmptyList()
     * testDeletingLastOfOneItemListShouldReturnEmptyList()
+*** getAt
+- Comprobar que si intentas acceder a un elemento anterior al primer elemento de una lista no vacía da error.
+    * testGettingAtItemBeforeFirstShouldRaiseAnException()
+- Comprobar que si intentas acceder a un elemento posterior al último elemento de una lista no vacía da error.
+    * testGettingAtItemAfterLastShouldRaiseAnException()
+- Comprobar que si intentas acceder a un elemento de una lista vacía da error.
+    * testGettingAtItemOfAnEmptyListShouldRaiseAnExceotion()
+- Comprobar que si intentas acceder al elemento de una lista no vacía con posición 0 nos dará el primer elemento.
+    * testGettingAtItemWithIndexZeroShouldReturnFirstElementOfTheList()
+- Comprobar que si intentas acceder al elemento de una lista no vacía con posición n-1 (n es el tamaño de la lista) nos dará el último elemento.
+    * testGettingAtItemWithIndexLostSizeMinusOneShouldReturnLastElementOfTheList()
+- Comprobar que si intentas acceder a un elemento de una lista no vacía con posición x (0 < x < n-1) nos dará el elemento en la posición x.
+    * testGettingAtItemWithIndexBetweenZeroAndListSizeMinusOneShouldReturnTheElementWithSameIndexOfTheList()
+*** find
+- Comprobar que si intentas encontrar un valor en una lista no vacía y dicho valor no existe en la lista da error.
+    * testFindingAnItemThatDoesNotExistInAListShouldRaiseAnException()
+- Comprobar que si intentas encontrar un valor en una lista no vacía y dicho valor existe en la lista nos devolverá el elemento de la lista con dicho valor.
+    * testFindingAnItemThatExistsInAListShouldReturnAnElementWithSameItemOfTheList()
+- Comprobar que si intentas encontrar un valor en una lista vacía da error.
+    * testFindingAnItemAtAnEmptyListShouldRaiseAnException()
+- Comprobar que si intentas encontrar un valor nulo en una lista no vacía da error.
+    * testFindingANullItemAtANonEmptyListShouldRaiseAnException()
+*** delete
+- Comprobar que si intentas borrar un elemento nulo de una lista no vacía da error.
+    * testDeletingANullElementFromANonEmptyListShouldRaiseAnException()
+- Comprobar que si intentas borrar un elemento no nulo de una lista vacía da error.
+    * testDeletingANonNullElementFromAnEmptyListShouldRaiseAnException()
+- Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento no existe en la lista da error.
+    * testDeletingAnElementThatDoesNotExistInAListShouldRaiseAnException()
+- Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento es el primero de la lista borrará el primer elemento de la lista.
+    * testDeletingAnElementThatIsTheFirstOfAListShouldDeleteTheFirstElement()
+- Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento es el último de la lista borrará el último elemento de la lista.
+    * testDeletingAnElementThatIsTheLastOfAListShouldDeleteTheLastElement()
+- Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento está en la lista y no es terminal se borrará de la lista.
+    * testDeletingAnElementThatIsNonTerminalOfAListShouldDeleteThatElement()
+*** sort
+- Comprobar que si intentas ordenar una lista vacía da error.
+    * testSortingAnEmptyListShouldRaiseAnException()
+- Comprobar que si intentas ordenar una lista de un elemento no se modificará la lista.
+    * testSortingAListOfOneElementShouldNotChangeThatList()
+- Comprobar que si el comparador que se le da al método es nulo da error.
+    * testSortingAListWithNullComparatorShouldRaiseAnException()
+- Comprobar que si intentas ordenar una lista de más de un elemento se ordenarán los elementos siguiendo las condiciones establecidas por el comparador.
+    * testSortingAListWithMoreThanOneElementShouldSortThatList()
