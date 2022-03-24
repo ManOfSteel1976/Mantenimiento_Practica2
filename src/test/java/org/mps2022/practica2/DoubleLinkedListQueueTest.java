@@ -275,14 +275,4 @@ class DoubleEndedQueueTest {
         assertEquals(node6,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
 
-    @Test
-    void testSortingAListOfOneElementShouldNotChangeThatList(){
-        DequeNode<Integer> node1 = new DequeNode<>(5, null, null);
-        list.append(node1);
-        list.sort(comparator);
-        assertEquals(node1,list.peekFirst());
-        assertEquals(node1,list.peekLast());
-    }
-
-
 }
