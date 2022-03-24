@@ -161,6 +161,37 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public void sort(Comparator<DequeNode<T>> comparator) {
-
+        if (comparator==null){
+            throw new IllegalArgumentException("Error: comparator is null");
+        }
+        if (size>0){
+           DoubleLinkedListQueue<T> res = new DoubleLinkedListQueue<>();
+           while (size>0){
+               DequeNode<T> current = nodeFirst;
+               this.deleteFirst();
+               if (res.size()>0){
+                   if (comparator.compare(current, res.peekFirst()) <= 0){
+                       res.appendLeft(current);
+                   }else if(comparator.compare(current, res.peekLast()) > 0){
+                       res.append(current);
+                   }else{
+                       DequeNode<T> aux = res.peekFirst();
+                       DequeNode<T> previous = null;
+                       while (aux!=null && (comparator.compare(aux, current) <= 0)){
+                           previous = aux;
+                           aux = aux.getNext();
+                       }
+                       current.setNext(aux);
+                       current.setPrevious(previous);
+                       previous.setNext(current);
+                       aux.setPrevious(current);
+                   }
+               }else{
+                   res.append(current);
+               }
+           }
+           nodeFirst = res.peekFirst();
+           nodeLast = res.peekLast();
+        }
     }
 }
