@@ -80,9 +80,9 @@ DoubleLinkedListQueue
     * testFindingANullItemAtANonEmptyListShouldRaiseAnException()
 *** delete
 - Comprobar que si intentas borrar un elemento nulo de una lista no vacía da error.
-    * testDeletingANullElementFromANonEmptyListShouldRaiseAnException()
+    * testDeletingANullElementFromAListShouldRaiseAnException()
 - Comprobar que si intentas borrar un elemento no nulo de una lista vacía da error.
-    * testDeletingANonNullElementFromAnEmptyListShouldRaiseAnException()
+    * testDeletingAnElementFromAnEmptyListShouldRaiseAnException()
 - Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento no existe en la lista da error.
     * testDeletingAnElementThatDoesNotExistInAListShouldRaiseAnException()
 - Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento es el primero de la lista borrará el primer elemento de la lista.
