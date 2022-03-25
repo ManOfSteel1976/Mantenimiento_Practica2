@@ -70,12 +70,12 @@ DoubleLinkedListQueue
 - Comprobar que si intentas acceder a un elemento de una lista no vacía con posición x (0 < x < n-1) nos dará el elemento en la posición x.
     * testGettingAtItemWithIndexBetweenZeroAndListSizeMinusOneShouldReturnTheElementWithSameIndexOfTheList()
 *** find
-- Comprobar que si intentas encontrar un valor en una lista no vacía y dicho valor no existe en la lista da error.
-    * testFindingAnItemThatDoesNotExistInAListShouldRaiseAnException()
+- Comprobar que si intentas encontrar un valor en una lista no vacía y dicho valor no existe en la lista devuelve null.
+    * testFindingAnItemThatDoesNotExistInAListShouldReturnNull()
 - Comprobar que si intentas encontrar un valor en una lista no vacía y dicho valor existe en la lista nos devolverá el elemento de la lista con dicho valor.
     * testFindingAnItemThatExistsInAListShouldReturnAnElementWithSameItemOfTheList()
-- Comprobar que si intentas encontrar un valor en una lista vacía da error.
-    * testFindingAnItemAtAnEmptyListShouldRaiseAnException()
+- Comprobar que si intentas encontrar un valor en una lista vacía devuelve null.
+    * estFindingAnItemAtAnEmptyListShouldReturnNull()
 - Comprobar que si intentas encontrar un valor nulo en una lista no vacía da error.
     * testFindingANullItemAtANonEmptyListShouldRaiseAnException()
 *** delete
@@ -93,12 +93,15 @@ DoubleLinkedListQueue
     * testDeletingAnElementThatIsNonTerminalOfAListShouldDeleteThatElement()
 *** sort
 - Comprobar que si intentas ordenar una lista vacía da error.
-    * testSortingAnEmptyListShouldRaiseAnException()
-- Comprobar que si intentas ordenar una lista de un elemento no se modificará la lista.
+    * testSortingAnEmptyListShouldRaiseAnException()---------------
+- Comprobar que si intentas ordenar una lista de un elemento no se modificará la lista.-----------
     * testSortingAListOfOneElementShouldNotChangeThatList()
-- Comprobar que si el comparador que se le da al método es nulo da error.
+- Comprobar que si el comparador que se le da al método es nulo da error.------------
     * testSortingAListWithNullComparatorShouldRaiseAnException()
 - Comprobar que si intentas ordenar una lista desordenada de más de un elemento se ordenarán los elementos siguiendo las condiciones establecidas por el comparador.
-    * testSortingADisorderedListWithMoreThanOneElementShouldSortThatList()
+    * sortOfADisorderedQueueShouldOrderIt()
 - Comprobar que si intentas ordenar una lista ordenada de más de un elemento no se modificará la lista.
-    * testSortingAnOrderedListWithMoreThanOneElementShouldNotChangeThatList()
+    * testSortOfAnOrderedQueueShouldKeepOrdered()
+    * testSortOfAReverseOrderedQueueShouldOrderIt()
+- Comprobar que al ordenar una lista con elementos repetidos, los mantiene en orden de entrada
+    * testSortOfListWithRepeatedItemsKeepThemInInputOrder()

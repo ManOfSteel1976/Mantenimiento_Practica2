@@ -104,6 +104,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public DequeNode<T> getAt(int position) {
+        if (size==0){
+            throw new RuntimeException("Error: Empty List");
+        }
         if (position<0){
             throw new IllegalArgumentException("Error: Negative position");
         }
@@ -127,7 +130,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             throw new IllegalArgumentException("Error: Input item is null");
         }
         DequeNode<T> res = nodeFirst;
-        while (res != null && item.equals(res.getItem())) {
+        while (res != null && !item.equals(res.getItem())) {
             res = res.getNext();
         }
         return res;
@@ -172,14 +175,14 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                current.setNext(null);
                current.setPrevious(null);
                if (res.size()>0){
-                   if (comparator.compare(current, res.peekFirst()) <= 0){
+                   if (comparator.compare(current, res.peekFirst()) < 0){
                        res.appendLeft(current);
-                   }else if(comparator.compare(current, res.peekLast()) > 0){
+                   }else if(comparator.compare(current, res.peekLast()) >= 0){
                        res.append(current);
                    }else{
                        DequeNode<T> aux = res.peekFirst();
                        DequeNode<T> previous = null;
-                       while (aux!=null && (comparator.compare(aux, current) < 0)){
+                       while (aux!=null && (comparator.compare(aux, current) <= 0)){
                            previous = aux;
                            aux = aux.getNext();
                        }

@@ -167,6 +167,75 @@ class DoubleEndedQueueTest {
     }
 
     @Test
+    public void testGettingAtItemBeforeFirstShouldRaiseAnException(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.getAt(-1));
+    }
+
+    @Test
+    public void testGettingAtItemAfterLastShouldRaiseAnException(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.getAt(3));
+    }
+
+    @Test
+    public void testGettingAtItemOfAnEmptyListShouldRaiseAnException(){
+        assertThrows(RuntimeException.class, () -> list.getAt(1));
+    }
+
+    @Test
+    public void testGettingAtItemWithIndexZeroShouldReturnFirstElementOfTheList(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertEquals(list.peekFirst(),list.getAt(0));
+    }
+
+    @Test
+    public void testGettingAtItemWithIndexLostSizeMinusOneShouldReturnLastElementOfTheList(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertEquals(list.peekLast(),list.getAt(list.size()-1));
+    }
+
+    @Test
+    public void testGettingAtItemWithIndexBetweenZeroAndListSizeMinusOneShouldReturnTheElementWithSameIndexOfTheList(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
+
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+
+        assertEquals(node2,list.getAt(1));
+        assertEquals(node3,list.getAt(2));
+    }
+
+    @Test
     public void testFindingANullItemAtANonEmptyListShouldRaiseAnException(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
@@ -192,7 +261,9 @@ class DoubleEndedQueueTest {
         list.append(node2);
         list.append(node3);
 
-        assertNull(list.find(5));
+        DequeNode<Integer> obtainedValue = list.find(5);
+
+        assertNull(obtainedValue);
     }
 
     @Test
@@ -289,7 +360,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    void testSortOfAReverseOrderedQueueShouldKeepOrdered(){
+    void testSortOfAReverseOrderedQueueShouldOrderIt(){
         DequeNode<Integer> node1 = new DequeNode<>(6, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(5, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(4, null, null);
@@ -318,4 +389,33 @@ class DoubleEndedQueueTest {
         assertEquals(node6,list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
 
+    @Test
+    void testSortOfListWithRepeatedItemsKeepThemInInputOrder() {
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node5 = new DequeNode<>(5, null, null);
+        DequeNode<Integer> node6 = new DequeNode<>(2, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+        list.append(node5);
+        list.append(node6);
+
+        list.sort(comparator);
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node2, list.peekFirst().getNext());
+        assertEquals(node4, list.peekFirst().getNext().getNext());
+        assertEquals(node6, list.peekFirst().getNext().getNext().getNext());
+        assertEquals(node3, list.peekFirst().getNext().getNext().getNext().getNext());
+        assertEquals(node5, list.peekFirst().getNext().getNext().getNext().getNext().getNext());
+        assertEquals(node5, list.peekLast());
+        assertEquals(node3, list.peekLast().getPrevious());
+        assertEquals(node6, list.peekLast().getPrevious().getPrevious());
+        assertEquals(node4, list.peekLast().getPrevious().getPrevious().getPrevious());
+        assertEquals(node2, list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious());
+        assertEquals(node1, list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
+    }
 }
