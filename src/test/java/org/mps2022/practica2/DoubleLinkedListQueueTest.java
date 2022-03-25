@@ -418,4 +418,87 @@ class DoubleEndedQueueTest {
         assertEquals(node2, list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious());
         assertEquals(node1, list.peekLast().getPrevious().getPrevious().getPrevious().getPrevious().getPrevious());
     }
+
+    @Test
+    void testDeletingANullElementFromAListShouldRaiseAnException() {
+        list.append(new DequeNode<>(3, null, null));
+        assertThrows(RuntimeException.class, () -> list.delete(null));
+    }
+
+    @Test
+    void testDeletingAnElementFromAnEmptyListShouldRaiseAnException() {
+        assertThrows(RuntimeException.class, () -> list.delete(new DequeNode<>(12, null, null)));
+    }
+
+    @Test
+    void testDeletingAnElementThatDoesNotExistInAListShouldRaiseAnException() {
+        list.append(new DequeNode<>(1, null, null));
+        list.append(new DequeNode<>(2, null, null));
+        list.append(new DequeNode<>(3, null, null));
+        list.append(new DequeNode<>(4, null, null));
+        assertThrows(RuntimeException.class, () -> list.delete(new DequeNode<>(5, null, null)));
+    }
+
+    @Test
+    void testDeletingAnElementThatIsTheFirstOfAListShouldDeleteTheFirstElement() {
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+
+        list.delete(node1);
+
+        assertEquals(node2, list.peekFirst());
+        assertEquals(node3, list.peekFirst().getNext());
+        assertEquals(node4, list.peekFirst().getNext().getNext());
+        assertEquals(node4, list.peekLast());
+        assertEquals(node3, list.peekLast().getPrevious());
+        assertEquals(node2, list.peekLast().getPrevious().getPrevious());
+    }
+
+    @Test
+    void testDeletingAnElementThatIsTheLastOfAListShouldDeleteTheLastElement() {
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+
+        list.delete(node4);
+
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node2, list.peekFirst().getNext());
+        assertEquals(node3, list.peekFirst().getNext().getNext());
+        assertEquals(node3, list.peekLast());
+        assertEquals(node2, list.peekLast().getPrevious());
+        assertEquals(node1, list.peekLast().getPrevious().getPrevious());
+    }
+
+    @Test
+    void testDeletingAnElementThatIsNonTerminalOfAListShouldDeleteThatElement() {
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        DequeNode<Integer> node4 = new DequeNode<>(4, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+        list.append(node4);
+
+        list.delete(node2);
+
+        assertEquals(node1, list.peekFirst());
+        assertEquals(node3, list.peekFirst().getNext());
+        assertEquals(node4, list.peekFirst().getNext().getNext());
+        assertEquals(node4, list.peekLast());
+        assertEquals(node3, list.peekLast().getPrevious());
+        assertEquals(node1, list.peekLast().getPrevious().getPrevious());
+    }
 }

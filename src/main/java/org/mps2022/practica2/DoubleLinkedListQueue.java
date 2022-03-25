@@ -104,19 +104,19 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public DequeNode<T> getAt(int position) {
-        if (size==0){
+        if (size <= 0){
             throw new RuntimeException("Error: Empty List");
         }
-        if (position<0){
+        if (position < 0){
             throw new IllegalArgumentException("Error: Negative position");
         }
-        if (position>=size){
+        if (position >= size){
             throw new IllegalArgumentException("Error: Position greater than list size");
         }
         DequeNode<T> res;
         DequeNode<T> aux = this.peekFirst();
         int index = 0;
-        while (index<position){
+        while (index < position){
             aux = aux.getNext();
             index++;
         }
@@ -138,29 +138,41 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public void delete(DequeNode<T> node) {
-        if (node == null) {
+        if (node == null) { // Si el nodo no ha sido proporcionado
             throw new IllegalArgumentException("Error: Input node is null");
+        }
+        if (this.size <= 0) { // Si la lista está vacía
+            throw new RuntimeException("Error: Empty list");
         }
         DequeNode<T> current = this.peekFirst();
         DequeNode<T> previous = null;
-        while (current!=null && node!=current){
+        while (current != null && node != current) {
             previous = current;
             current = current.getNext();
         }
-        if(current==null){
+        if (current == null) { // Si no se ha encontrado el nodo
             throw new NoSuchElementException("Error: Node not found");
-        }else{
-            if(previous!=null){
-                previous.setNext(current.getNext());
-                current.setNext(null);
-                current.setPrevious(null);
-            }else{
+        } else {
+            if (previous == null && current.getNext() == null) { // Si la lista es de un solo elemento
                 nodeFirst = null;
                 nodeLast = null;
+            } else if (previous == null && current.getNext() != null) { // Si es el primer elemento de una lista de dos elementos o más
+                current.getNext().setPrevious(null);
+                nodeFirst = current.getNext();
+                current.setNext(null);
+            } else if (previous != null && current.getNext() == null) { // Si es el último elemento de una lista de dos elementos o más
+                previous.setNext(null);
+                nodeLast = previous;
+                current.setPrevious(null);
+            } else { // Si es un nodo no terminal de una lista de dos elementos o más
+                previous.setNext(current.getNext());
+                current.getNext().setPrevious(previous);
+                current.setNext(null);
+                current.setPrevious(null);
             }
             size--;
         }
-    };
+    }
 
     @Override
     public void sort(Comparator<DequeNode<T>> comparator) {
