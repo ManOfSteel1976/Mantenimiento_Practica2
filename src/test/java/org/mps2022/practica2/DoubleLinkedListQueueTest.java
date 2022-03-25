@@ -167,6 +167,49 @@ class DoubleEndedQueueTest {
     }
 
     @Test
+    public void testFindingANullItemAtANonEmptyListShouldRaiseAnException(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertThrows(IllegalArgumentException.class, () -> list.find(null));
+    }
+
+    @Test
+    public void testFindingAnItemAtAnEmptyListShouldReturnNull(){
+        assertNull(list.find(5));
+    }
+
+    @Test
+    public void testFindingAnItemThatDoesNotExistInAListShouldReturnNull(){
+        DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        assertNull(list.find(5));
+    }
+
+    @Test
+    public void testFindingAnItemThatExistsInAListShouldReturnAnElementWithSameItemOfTheList(){
+        DequeNode<Integer> node1 = new DequeNode<>(2, null, null);
+        DequeNode<Integer> node2 = new DequeNode<>(11, null, null);
+        DequeNode<Integer> node3 = new DequeNode<>(5, null, null);
+
+        list.append(node1);
+        list.append(node2);
+        list.append(node3);
+
+        DequeNode<Integer> obtainedValue = list.find(5);
+        assertEquals(obtainedValue,node3);
+    }
+
+    @Test
     public void testSortingAListWithNullComparatorShouldRaiseAnException() {
         assertThrows(IllegalArgumentException.class, () -> list.sort(null));
     }
