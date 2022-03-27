@@ -23,7 +23,7 @@ class DequeNodeTest {
     }
 
     @AfterEach
-    public void finish (){
+    public void finish(){
         dequeInt = null;
     }
 
