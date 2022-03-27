@@ -12,7 +12,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public void appendLeft(DequeNode<T> node) {
         if(node==null){
-            throw new ("Empty Node");
+            throw new RuntimeException("Empty Node");
         }else {
             // If deque is empty
             if (nodeFirst == null){
