@@ -501,4 +501,18 @@ class DoubleEndedQueueTest {
         assertEquals(node3, list.peekLast().getPrevious());
         assertEquals(node1, list.peekLast().getPrevious().getPrevious());
     }
+
+    @Test
+    void testDeletingLastItemOfListShouldResultEmptyList() {
+        DequeNode<Integer> node = new DequeNode<>(1, null, null);
+
+        list.append(node);
+
+        list.delete(node);
+
+        assertNull(list.peekFirst());
+        assertNull(list.peekLast());
+        assertEquals(0, list.size());
+    }
+
 }

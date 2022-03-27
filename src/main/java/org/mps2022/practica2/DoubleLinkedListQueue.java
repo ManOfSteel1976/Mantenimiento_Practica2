@@ -104,7 +104,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public DequeNode<T> getAt(int position) {
-        if (size <= 0){
+        if (size == 0){
             throw new RuntimeException("Error: Empty List");
         }
         if (position < 0){
@@ -138,41 +138,42 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public void delete(DequeNode<T> node) {
-        if (node == null) { // Si el nodo no ha sido proporcionado
+        if (node == null) {
             throw new IllegalArgumentException("Error: Input node is null");
+            // If input node is null
         }
-        if (this.size <= 0) { // Si la lista está vacía
+        if (this.size == 0) {
+            // If list is empty
             throw new RuntimeException("Error: Empty list");
         }
-        DequeNode<T> current = this.peekFirst();
-        DequeNode<T> previous = null;
-        while (current != null && node != current) {
-            previous = current;
-            current = current.getNext();
-        }
-        if (current == null) { // Si no se ha encontrado el nodo
-            throw new NoSuchElementException("Error: Node not found");
-        } else {
-            if (previous == null && current.getNext() == null) { // Si la lista es de un solo elemento
-                nodeFirst = null;
-                nodeLast = null;
-            } else if (previous == null && current.getNext() != null) { // Si es el primer elemento de una lista de dos elementos o más
-                current.getNext().setPrevious(null);
-                nodeFirst = current.getNext();
-                current.setNext(null);
-            } else if (previous != null && current.getNext() == null) { // Si es el último elemento de una lista de dos elementos o más
-                previous.setNext(null);
-                nodeLast = previous;
-                current.setPrevious(null);
-            } else { // Si es un nodo no terminal de una lista de dos elementos o más
+        if (node==this.peekFirst()){
+            // node is the first node of the list
+            this.deleteFirst();
+        }else if (node==this.peekLast()){
+            // node is the last node of the list
+            this.deleteLast();
+        }else {
+            // node isn't in the list or it's between the first node and the last node of the list
+            DequeNode<T> current = this.peekFirst();
+            DequeNode<T> previous = null;
+            while (current != null && node != current) {
+                previous = current;
+                current = current.getNext();
+            }
+            if (current == null) {
+                // node isn't in the list
+                throw new NoSuchElementException("Error: Node not found");
+            } else {
+                // Deletes the node and makes
+                // the adjustment in the links
                 previous.setNext(current.getNext());
                 current.getNext().setPrevious(previous);
                 current.setNext(null);
                 current.setPrevious(null);
+                size--;
             }
-            size--;
         }
-    }
+    };
 
     @Override
     public void sort(Comparator<DequeNode<T>> comparator) {

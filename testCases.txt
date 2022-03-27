@@ -91,12 +91,14 @@ DoubleLinkedListQueue
     * testDeletingAnElementThatIsTheLastOfAListShouldDeleteTheLastElement()
 - Comprobar que si intentas borrar un elemento no nulo de una lista no vacía y dicho elemento está en la lista y no es terminal se borrará de la lista.
     * testDeletingAnElementThatIsNonTerminalOfAListShouldDeleteThatElement()
+- Comprobar que si intentas borrar el último elemento de una lista, la lista resultante es vacía.
+    * testDeletingLastItemOfListShouldResultEmptyList()
 *** sort
 - Comprobar que si intentas ordenar una lista vacía da error.
-    * testSortingAnEmptyListShouldRaiseAnException()---------------
-- Comprobar que si intentas ordenar una lista de un elemento no se modificará la lista.-----------
+    * testSortingAnEmptyListShouldRaiseAnException()
+- Comprobar que si intentas ordenar una lista de un elemento no se modificará la lista.
     * testSortingAListOfOneElementShouldNotChangeThatList()
-- Comprobar que si el comparador que se le da al método es nulo da error.------------
+- Comprobar que si el comparador que se le da al método es nulo da error.
     * testSortingAListWithNullComparatorShouldRaiseAnException()
 - Comprobar que si intentas ordenar una lista desordenada de más de un elemento se ordenarán los elementos siguiendo las condiciones establecidas por el comparador.
     * sortOfADisorderedQueueShouldOrderIt()
