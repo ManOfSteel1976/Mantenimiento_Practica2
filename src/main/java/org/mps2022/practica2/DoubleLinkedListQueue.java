@@ -12,7 +12,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public void appendLeft(DequeNode<T> node) {
         if(node==null){
-            throw new RuntimeException("Empty Node");
+            throw new IllegalStateException("Empty Node");
         }else {
             // If deque is empty
             if (nodeFirst == null){
@@ -32,18 +32,17 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public void append(DequeNode<T> node) {
         if(node==null){
-            throw new RuntimeException("Empty Node");
+            throw new IllegalStateException("Empty Node");
         }else{
             // If deque is empty
             if (nodeLast == null) {
                 nodeFirst = node;
-                nodeLast = node;
                 // Inserts node at the rear end
             }else{
                 node.setPrevious(nodeLast);
                 nodeLast.setNext(node);
-                nodeLast = node;
             }
+            nodeLast = node;
             size++;
         }
     }
@@ -51,7 +50,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public void deleteFirst() {
         if(nodeFirst==null){
-            throw new RuntimeException("Empty List");
+            throw new IllegalStateException("Empty List");
         }else{
             // Deletes the node from the front end and makes
             // the adjustment in the links
@@ -70,7 +69,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public void deleteLast() {
         if(nodeLast==null){
-            throw new RuntimeException("Empty List");
+            throw new IllegalStateException("Empty List");
         }else {
             // Deletes the node from the front end and makes
             // the adjustment in the links
@@ -106,7 +105,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
     @Override
     public DequeNode<T> getAt(int position) {
         if (size == 0){
-            throw new RuntimeException("Error: Empty List");
+            throw new IllegalStateException("Error: Empty List");
         }
         if (position < 0){
             throw new IllegalArgumentException("Error: Negative position");
@@ -145,7 +144,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }
         if (this.size == 0) {
             // If list is empty
-            throw new RuntimeException("Error: Empty list");
+            throw new IllegalStateException("Error: Empty list");
         }
         if (node==this.peekFirst()){
             // node is the first node of the list
@@ -167,7 +166,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
             } else {
                 // Deletes the node and makes
                 // the adjustment in the links
-                previous.setNext(current.getNext());
+                if (previous!=null) {
+                    previous.setNext(current.getNext());
+                }
                 current.getNext().setPrevious(previous);
                 current.setNext(null);
                 current.setPrevious(null);
@@ -194,16 +195,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                    }else if(comparator.compare(current, res.peekLast()) >= 0){
                        res.append(current);
                    }else{
-                       DequeNode<T> aux = res.peekFirst();
-                       DequeNode<T> previous = null;
-                       while (aux!=null && (comparator.compare(aux, current) <= 0)){
-                           previous = aux;
-                           aux = aux.getNext();
-                       }
-                       current.setNext(aux);
-                       current.setPrevious(previous);
-                       previous.setNext(current);
-                       aux.setPrevious(current);
+                       insertNodeInOrder(res, current, comparator);
                    }
                }else{
                    res.append(current);
@@ -213,7 +205,24 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
            nodeLast = res.peekLast();
            size = res.size();
         }else{
-            throw new RuntimeException("Yo can't sort an empty list");
+            throw new IllegalStateException("Yo can't sort an empty list");
+        }
+    }
+    
+    private void insertNodeInOrder(DoubleLinkedListQueue<T> list, DequeNode<T> node, Comparator<DequeNode<T>> comparator){
+        DequeNode<T> aux = list.peekFirst();
+        DequeNode<T> previous = null;
+        while (aux!=null && (comparator.compare(aux, node) <= 0)){
+            previous = aux;
+            aux = aux.getNext();
+        }
+        node.setNext(aux);
+        node.setPrevious(previous);
+        if(previous!=null){
+            previous.setNext(node);
+        }
+        if(aux!=null) {
+            aux.setPrevious(node);
         }
     }
 }

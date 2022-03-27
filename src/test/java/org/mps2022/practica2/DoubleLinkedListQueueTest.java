@@ -24,7 +24,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testAppendShouldInsertNodeAtEnd() {
+    void testAppendShouldInsertNodeAtEnd() {
         DequeNode<Integer> node = new DequeNode<>(5, null, null);
         DequeNode<Integer> expectedValue = new DequeNode<>(10, null, null);
 
@@ -36,13 +36,13 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testAppendNullNodeRaiseAnException(){
+    void testAppendNullNodeRaiseAnException(){
         DequeNode<Integer> node = null;
         assertThrows(RuntimeException.class, () -> list.append(node));
     }
 
     @Test
-    public void testAppendLeftShouldInsertNodeAtStart() {
+    void testAppendLeftShouldInsertNodeAtStart() {
         DequeNode<Integer> node = new DequeNode<>(5, null, null);
         DequeNode<Integer> expectedValue = new DequeNode<>(10, null, null);
 
@@ -54,13 +54,13 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testAppendLeftNullNodeRaiseAnException(){
+    void testAppendLeftNullNodeRaiseAnException(){
         DequeNode<Integer> node = null;
         assertThrows(RuntimeException.class, () -> list.appendLeft(node));
     }
 
     @Test
-    public void testSizeOfQueueWithFourAppendsAndTwoDeletesShouldReturnTwo() {
+    void testSizeOfQueueWithFourAppendsAndTwoDeletesShouldReturnTwo() {
         list.appendLeft(new DequeNode<>(5, null, null));
         list.append(new DequeNode<>(10, null, null));
         list.appendLeft(new DequeNode<>(15, null, null));
@@ -75,17 +75,17 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testDeletingFirstOfAnEmptyListShouldRaiseAnException() {
+    void testDeletingFirstOfAnEmptyListShouldRaiseAnException() {
         assertThrows(RuntimeException.class, () -> list.deleteFirst());
     }
 
     @Test
-    public void testDeletingLastOfAnEmptyListShouldRaiseAnException() {
+    void testDeletingLastOfAnEmptyListShouldRaiseAnException() {
         assertThrows(RuntimeException.class, () -> list.deleteLast());
     }
 
     @Test
-    public void testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual() {
+    void testByDeletingFirstTheValuesOfSecondNodeAndNewFirstNodeShouldBeEqual() {
         DequeNode<Integer> expectedValue = new DequeNode<>(10, null, null);
         list.append(new DequeNode<>(5, null, null));
         list.append(expectedValue);
@@ -99,7 +99,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual() {
+    void testByDeletingLastTheValuesOfSecondToLastNodeAndNewLastNodeShouldBeEqual() {
         DequeNode<Integer> expectedValue = new DequeNode<>(15, null, null);
         list.append(new DequeNode<>(5, null, null));
         list.append(new DequeNode<>(10, null, null));
@@ -113,7 +113,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testIfAppendEmptyListValueIsPeekFirst(){
+    void testIfAppendEmptyListValueIsPeekFirst(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
         list.append(expectedValue);
         DequeNode<Integer> obtainedValue = list.peekFirst();
@@ -121,7 +121,7 @@ class DoubleEndedQueueTest {
         assertEquals(obtainedValue,expectedValue);
     }
     @Test
-    public void testIfAppendEmptyListValueIsPeekLast(){
+    void testIfAppendEmptyListValueIsPeekLast(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
         list.append(expectedValue);
         DequeNode<Integer> obtainedValue = list.peekLast();
@@ -130,7 +130,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testIfAppendLeftEmptyListValueIsPeekFirst(){
+    void testIfAppendLeftEmptyListValueIsPeekFirst(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
         list.appendLeft(expectedValue);
         DequeNode<Integer> obtainedValue = list.peekFirst();
@@ -138,7 +138,7 @@ class DoubleEndedQueueTest {
         assertEquals(obtainedValue,expectedValue);
     }
     @Test
-    public void testIfAppendLeftEmptyListValueIsPeekLast(){
+    void testIfAppendLeftEmptyListValueIsPeekLast(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5,null,null);
         list.appendLeft(expectedValue);
         DequeNode<Integer> obtainedValue = list.peekLast();
@@ -147,7 +147,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testDeletingFirstOfOneItemListShouldReturnEmptyList(){
+    void testDeletingFirstOfOneItemListShouldReturnEmptyList(){
         int expectedValue = 0;
         list.appendLeft(new DequeNode<>(5,null,null));
         list.deleteFirst();
@@ -157,7 +157,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testDeletingLastOfOneItemListShouldReturnEmptyList(){
+    void testDeletingLastOfOneItemListShouldReturnEmptyList(){
         int expectedValue = 0;
         list.appendLeft(new DequeNode<>(5,null,null));
         list.deleteLast();
@@ -167,7 +167,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testGettingAtItemBeforeFirstShouldRaiseAnException(){
+    void testGettingAtItemBeforeFirstShouldRaiseAnException(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -179,7 +179,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testGettingAtItemAfterLastShouldRaiseAnException(){
+    void testGettingAtItemAfterLastShouldRaiseAnException(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -191,12 +191,12 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testGettingAtItemOfAnEmptyListShouldRaiseAnException(){
+    void testGettingAtItemOfAnEmptyListShouldRaiseAnException(){
         assertThrows(RuntimeException.class, () -> list.getAt(1));
     }
 
     @Test
-    public void testGettingAtItemWithIndexZeroShouldReturnFirstElementOfTheList(){
+    void testGettingAtItemWithIndexZeroShouldReturnFirstElementOfTheList(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -208,7 +208,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testGettingAtItemWithIndexLostSizeMinusOneShouldReturnLastElementOfTheList(){
+    void testGettingAtItemWithIndexLostSizeMinusOneShouldReturnLastElementOfTheList(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -220,7 +220,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testGettingAtItemWithIndexBetweenZeroAndListSizeMinusOneShouldReturnTheElementWithSameIndexOfTheList(){
+    void testGettingAtItemWithIndexBetweenZeroAndListSizeMinusOneShouldReturnTheElementWithSameIndexOfTheList(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -236,7 +236,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testFindingANullItemAtANonEmptyListShouldRaiseAnException(){
+    void testFindingANullItemAtANonEmptyListShouldRaiseAnException(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -248,12 +248,12 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testFindingAnItemAtAnEmptyListShouldReturnNull(){
+    void testFindingAnItemAtAnEmptyListShouldReturnNull(){
         assertNull(list.find(5));
     }
 
     @Test
-    public void testFindingAnItemThatDoesNotExistInAListShouldReturnNull(){
+    void testFindingAnItemThatDoesNotExistInAListShouldReturnNull(){
         DequeNode<Integer> node1 = new DequeNode<>(1, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(3, null, null);
@@ -267,7 +267,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testFindingAnItemThatExistsInAListShouldReturnAnElementWithSameItemOfTheList(){
+    void testFindingAnItemThatExistsInAListShouldReturnAnElementWithSameItemOfTheList(){
         DequeNode<Integer> node1 = new DequeNode<>(2, null, null);
         DequeNode<Integer> node2 = new DequeNode<>(11, null, null);
         DequeNode<Integer> node3 = new DequeNode<>(5, null, null);
@@ -281,7 +281,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testSortingAListWithNullComparatorShouldRaiseAnException() {
+    void testSortingAListWithNullComparatorShouldRaiseAnException() {
         assertThrows(IllegalArgumentException.class, () -> list.sort(null));
     }
 
@@ -295,7 +295,7 @@ class DoubleEndedQueueTest {
     }
 
     @Test
-    public void testSortingAnEmptyListShouldRaiseAnException() {
+    void testSortingAnEmptyListShouldRaiseAnException() {
         assertThrows(RuntimeException.class, () -> list.sort(comparator));
     }
 

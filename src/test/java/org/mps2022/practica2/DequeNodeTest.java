@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DequeNodeTest {
+class DequeNodeTest {
 
     private DequeNode<Integer> dequeInt, dequeFirst, dequeLast;
 
@@ -28,7 +28,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testDequeNodeConstructorShouldReturnSameValueItem(){
+    void testDequeNodeConstructorShouldReturnSameValueItem(){
         int expectedValue = 5;
         int obtainedValue = dequeInt.getItem();
 
@@ -36,21 +36,21 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testDequeNodeConstructorShouldReturnSameValueNext(){
+    void testDequeNodeConstructorShouldReturnSameValueNext(){
         DequeNode<Integer> obtainedValue = dequeInt.getNext();
 
         assertNull(obtainedValue);
     }
 
     @Test
-    public void testDequeNodeConstructorShouldReturnSameValuePrevious(){
+    void testDequeNodeConstructorShouldReturnSameValuePrevious(){
         DequeNode<Integer> obtainedValue = dequeInt.getPrevious();
 
         assertNull(obtainedValue);
     }
 
     @Test
-    public void IfisNotATerminalNodeTheNextsNodeIsNotNull(){
+    void IfisNotATerminalNodeTheNextsNodeIsNotNull(){
         DequeNode<Integer> previousV = new DequeNode<>(5,null,null);
         dequeInt = new DequeNode<>(5,null,previousV);
         boolean obtainedValue =dequeInt.isNotATerminalNode();
@@ -59,7 +59,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void IfisNotATerminalNodeThePreviousNodeIsNotNull(){
+    void IfisNotATerminalNodeThePreviousNodeIsNotNull(){
         DequeNode<Integer> nextV = new DequeNode<>(5,null,null);
         dequeInt = new DequeNode<>(5,nextV,null);
         boolean obtainedValue =dequeInt.isNotATerminalNode();
@@ -67,7 +67,7 @@ public class DequeNodeTest {
         assertFalse(obtainedValue);
     }
     @Test
-    public void IfisNotATerminalNodeThePreviousNodeAndTheNextAreNotNull(){
+    void IfisNotATerminalNodeThePreviousNodeAndTheNextAreNotNull(){
         DequeNode<Integer> nextV = new DequeNode<>(5,null,null);
         DequeNode<Integer> previousV = new DequeNode<>(5,null,null);
         dequeInt = new DequeNode<>(5,nextV,previousV);
@@ -77,7 +77,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testGetItemShouldReturnItemValue(){
+    void testGetItemShouldReturnItemValue(){
         int expectedValue = 5;
         dequeInt = new DequeNode<>(expectedValue, null, null);
         int obtainedValue = dequeInt.getItem();
@@ -86,7 +86,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testGetNextShouldReturnNextNode(){
+    void testGetNextShouldReturnNextNode(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5, null, null);
         dequeInt = new DequeNode<>(4, expectedValue,null);
         DequeNode<Integer> obtainedValue= dequeInt.getNext();
@@ -95,7 +95,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testGetNextReturnsNullIfNextNodeIsNull(){
+    void testGetNextReturnsNullIfNextNodeIsNull(){
         dequeInt = new DequeNode<>(5,null,null);
         DequeNode<Integer> obtainedValue = dequeInt.getNext();
 
@@ -103,7 +103,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testGetPreviousShouldReturnPreviousNode(){
+    void testGetPreviousShouldReturnPreviousNode(){
         DequeNode<Integer> expectedValue = new DequeNode<>(5, null, null);
         dequeInt = new DequeNode<>(4, null, expectedValue);
         DequeNode<Integer> obtainedValue= dequeInt.getPrevious();
@@ -112,7 +112,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testGetPreviousReturnsNullIfPreviousNodeIsNull(){
+    void testGetPreviousReturnsNullIfPreviousNodeIsNull(){
         dequeInt = new DequeNode<>(5,null,null);
         DequeNode<Integer> obtainedValue = dequeInt.getPrevious();
 
@@ -120,7 +120,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testSetItemShouldChangeItemValue(){
+    void testSetItemShouldChangeItemValue(){
         int expectedValue = 3;
         dequeInt = new DequeNode<>(5,null,null);
         dequeInt.setItem(expectedValue);
@@ -130,7 +130,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testSetNextShouldChangeNextNode(){
+    void testSetNextShouldChangeNextNode(){
         DequeNode<Integer> expectedValue=  new DequeNode<>(5,null,null);
         dequeInt = new DequeNode<>(1,null,null);
         dequeInt.setNext(expectedValue);
@@ -141,7 +141,7 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testSetPreviousShouldChangePreviousNode(){
+    void testSetPreviousShouldChangePreviousNode(){
         DequeNode<Integer> expectedValue=  new DequeNode<>(5,null,null);
         dequeInt = new DequeNode<>(1,null,null);
         dequeInt.setPrevious(expectedValue);
@@ -152,14 +152,14 @@ public class DequeNodeTest {
     }
 
     @Test
-    public void testPreviousNodeToFirstShouldReturnNull() {
+    void testPreviousNodeToFirstShouldReturnNull() {
         DequeNode<Integer> obtainedValue = dequeFirst.getPrevious();
 
         assertNull(obtainedValue);
     }
 
     @Test
-    public void testNextNodeToLastShouldReturnNull() {
+    void testNextNodeToLastShouldReturnNull() {
         DequeNode<Integer> obtainedValue = dequeLast.getNext();
 
         assertNull(obtainedValue);
