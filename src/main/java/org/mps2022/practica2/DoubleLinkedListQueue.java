@@ -5,13 +5,14 @@ import java.util.NoSuchElementException;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
-    DequeNode<T> nodeFirst, nodeLast = null;
+    DequeNode<T> nodeFirst = null;
+    DequeNode<T> nodeLast = null;
     int size = 0;
 
     @Override
     public void appendLeft(DequeNode<T> node) {
         if(node==null){
-            throw new RuntimeException("Empty Node");
+            throw new ("Empty Node");
         }else {
             // If deque is empty
             if (nodeFirst == null){
@@ -173,7 +174,7 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
                 size--;
             }
         }
-    };
+    }
 
     @Override
     public void sort(Comparator<DequeNode<T>> comparator) {

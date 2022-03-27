@@ -427,7 +427,8 @@ class DoubleEndedQueueTest {
 
     @Test
     void testDeletingAnElementFromAnEmptyListShouldRaiseAnException() {
-        assertThrows(RuntimeException.class, () -> list.delete(new DequeNode<>(12, null, null)));
+        DequeNode<Integer> node = new DequeNode<>(12, null, null);
+        assertThrows(RuntimeException.class, () -> list.delete(node));
     }
 
     @Test
@@ -436,7 +437,9 @@ class DoubleEndedQueueTest {
         list.append(new DequeNode<>(2, null, null));
         list.append(new DequeNode<>(3, null, null));
         list.append(new DequeNode<>(4, null, null));
-        assertThrows(RuntimeException.class, () -> list.delete(new DequeNode<>(5, null, null)));
+        DequeNode<Integer> node = new DequeNode<>(5, null, null);
+
+        assertThrows(RuntimeException.class, () -> list.delete(node));
     }
 
     @Test
